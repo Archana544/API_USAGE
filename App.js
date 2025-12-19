@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import DetailScreen from './screens/DetailScreen';
+import SafetyTipsScreen from './screens/SafetyTipsScreen';
+import LocationMapScreen from './screens/LocationMapScreen'
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'SunSafe' }} />
+        <Stack.Screen name="Details" component={DetailScreen} options={{ title: 'UV Details' }} />
+        <Stack.Screen name="Safety Tips" component={SafetyTipsScreen} options={{ title: 'Exposure Safety' }} />
+        <Stack.Screen name="UVMap" component={LocationMapScreen} options={{ title: 'UV Map' }} />
+  
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
